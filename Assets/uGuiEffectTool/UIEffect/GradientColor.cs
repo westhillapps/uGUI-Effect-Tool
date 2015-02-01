@@ -1,4 +1,4 @@
-/*
+﻿/*
 uGui-Effect-Tool
 Copyright (c) 2015 WestHillApps (Hironari Nishioka)
 This software is released under the MIT License.
@@ -8,7 +8,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.UI;
 
-namespace uGui
+namespace uGUI
 {
     [AddComponentMenu ("UI/Effects/Gradient Color")]
     public class GradientColor : BaseVertexEffect
