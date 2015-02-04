@@ -19,6 +19,8 @@ Add the component to UI GameObject.
 * Blend Color - (Add Component >> UI/Effects/Blend Color)    
 ![Blend02](https://raw.githubusercontent.com/WestHillApps/westhillapps.github.io/master/res/ugui-effect-tool_blend02.png)
 
+*If you have made a change of color during play, please call the "Refresh()" method.  
+
 Developed By
 -------
 WestHillApps (Hironari Nishioka) - <xnininix@gmail.com>
