@@ -11,6 +11,7 @@ using UnityEngine.UI;
 namespace uGUI
 {
     [AddComponentMenu ("UI/Effects/Gradient Color")]
+    [RequireComponent (typeof (Graphic))]
     public class GradientColor : BaseVertexEffect
     {
         public enum DIRECTION
@@ -25,6 +26,8 @@ namespace uGUI
         public Color colorBottom = Color.black;
         public Color colorLeft = Color.red;
         public Color colorRight = Color.blue;
+
+        Graphic graphic;
 
         public override void ModifyVertices (List<UIVertex> vList)
         {
@@ -62,6 +65,19 @@ namespace uGUI
                 }
                 tempVertex.color.a = orgAlpha;
                 vList[i] = tempVertex;
+            }
+        }
+
+        /// <summary>
+        /// Refresh Gradient Color on playing.
+        /// </summary>
+        public void Refresh ()
+        {
+            if (graphic == null) {
+                graphic = GetComponent<Graphic> ();
+            }
+            if (graphic != null) {
+                graphic.SetVerticesDirty ();
             }
         }
     }
