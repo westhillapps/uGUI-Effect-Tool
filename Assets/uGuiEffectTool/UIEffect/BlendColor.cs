@@ -8,7 +8,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.UI;
 
-namespace uGUI
+namespace UiEffect
 {
     [AddComponentMenu ("UI/Effects/Blend Color")]
     [RequireComponent (typeof (Graphic))]
