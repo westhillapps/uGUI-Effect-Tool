@@ -10,9 +10,12 @@ using UnityEngine.UI;
 
 namespace UiEffect
 {
-    [AddComponentMenu ("UI/Effects/Blend Color")]
-    [RequireComponent (typeof (Graphic))]
+    [AddComponentMenu("UI/Effects/Blend Color"), RequireComponent(typeof(Graphic))]
+#if UNITY_4_6 || UNITY_5_0 || UNITY_5_1
     public class BlendColor : BaseVertexEffect
+#else
+    public class BlendColor : BaseMeshEffect
+#endif
     {
         public enum BLEND_MODE
         {
@@ -25,25 +28,28 @@ namespace UiEffect
         public BLEND_MODE blendMode = BLEND_MODE.Multiply;
         public Color color = Color.grey;
 
-        Graphic graphic;
-
-        public override void ModifyMesh(VertexHelper vh)
+#if UNITY_4_6 || UNITY_5_0 || UNITY_5_1
+        public override void ModifyVertices (List<UIVertex> vList)
+#else
+        public override void ModifyMesh (VertexHelper vh)
         {
-            if (!this.IsActive())
+            if (IsActive() == false) {
                 return;
+            }
 
-            List<UIVertex> list = new List<UIVertex>();
-            vh.GetUIVertexStream(list);
+            var vList = new List<UIVertex>();
+            vh.GetUIVertexStream(vList);
 
-            ModifyVertices(list);
+            ModifyVertices(vList);
 
             vh.Clear();
-            vh.AddUIVertexTriangleStream(list);
+            vh.AddUIVertexTriangleStream(vList);
         }
 
         public void ModifyVertices (List<UIVertex> vList)
+#endif
         {
-            if (IsActive () == false || vList == null || vList.Count == 0) {
+            if (IsActive() == false || vList == null || vList.Count == 0) {
                 return;
             }
 
@@ -75,11 +81,8 @@ namespace UiEffect
         /// </summary>
         public void Refresh ()
         {
-            if (graphic == null) {
-                graphic = GetComponent<Graphic> ();
-            }
             if (graphic != null) {
-                graphic.SetVerticesDirty ();
+                graphic.SetVerticesDirty();
             }
         }
     }
