@@ -4,6 +4,12 @@ Copyright (c) 2015 WestHillApps (Hironari Nishioka)
 This software is released under the MIT License.
 http://opensource.org/licenses/mit-license.php
 */
+
+// If you are using Unity5.2.1p1 ~ p4, please remove the "UNITY_5_2_1" definition.
+#if UNITY_4_6 || UNITY_5_0 || UNITY_5_1 || UNITY_5_2_1
+#define USE_BASE_VERTEX_EFFECT
+#endif
+
 using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.UI;
@@ -11,7 +17,7 @@ using UnityEngine.UI;
 namespace UiEffect
 {
     [AddComponentMenu("UI/Effects/Blend Color"), RequireComponent(typeof(Graphic))]
-#if UNITY_4_6 || UNITY_5_0 || UNITY_5_1
+#if USE_BASE_VERTEX_EFFECT
     public class BlendColor : BaseVertexEffect
 #else
     public class BlendColor : BaseMeshEffect
@@ -28,7 +34,7 @@ namespace UiEffect
         public BLEND_MODE blendMode = BLEND_MODE.Multiply;
         public Color color = Color.grey;
 
-#if UNITY_4_6 || UNITY_5_0 || UNITY_5_1
+#if USE_BASE_VERTEX_EFFECT
         public override void ModifyVertices (List<UIVertex> vList)
 #else
         public override void ModifyMesh (VertexHelper vh)
