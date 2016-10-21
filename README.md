@@ -4,7 +4,7 @@ uGUI-Effect-Tool
 [![License](https://img.shields.io/badge/license-MIT-blue.svg?style=flat)](http://opensource.org/licenses/mit-license.php)
 
 Vertex color UI Effect for Unity UI (uGUI).  
-made with Unity5.4.0f1
+made with Unity5.4.0f3
 
 ![GradientColor01](https://raw.githubusercontent.com/WestHillApps/westhillapps.github.io/master/res/ugui-effect-tool_gradient_color01.png)
 
@@ -39,7 +39,7 @@ License
 -------
 The MIT License (MIT)
 
-Copyright (c) 2015 WestHillApps (Hironari Nishioka)
+Copyright (c) 2016 WestHillApps (Hironari Nishioka)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
