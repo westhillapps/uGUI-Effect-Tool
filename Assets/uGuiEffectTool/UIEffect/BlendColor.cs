@@ -1,15 +1,9 @@
 ﻿/*
 uGui-Effect-Tool
-Copyright (c) 2015 WestHillApps (Hironari Nishioka)
+Copyright (c) 2016 WestHillApps (Hironari Nishioka)
 This software is released under the MIT License.
 http://opensource.org/licenses/mit-license.php
 */
-
-// If you are using Unity5.2.1p1 ~ p4, please remove the "UNITY_5_2_1" definition.
-#if UNITY_4_6 || UNITY_5_0 || UNITY_5_1 || UNITY_5_2_1
-#define USE_BASE_VERTEX_EFFECT
-#endif
-
 using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.UI;
@@ -17,13 +11,9 @@ using UnityEngine.UI;
 namespace UiEffect
 {
     [AddComponentMenu("UI/Effects/Blend Color"), RequireComponent(typeof(Graphic))]
-#if USE_BASE_VERTEX_EFFECT
-    public class BlendColor : BaseVertexEffect
-#else
     public class BlendColor : BaseMeshEffect
-#endif
     {
-        public enum BLEND_MODE
+        public enum BlendMode
         {
             Multiply,
             Additive,
@@ -31,63 +21,71 @@ namespace UiEffect
             Override,
         }
 
-        public BLEND_MODE blendMode = BLEND_MODE.Multiply;
-        public Color color = Color.grey;
+        [SerializeField]
+        private BlendMode m_blendMode = BlendMode.Multiply;
+        [SerializeField]
+        private Color m_color = Color.white;
 
-#if USE_BASE_VERTEX_EFFECT
-        public override void ModifyVertices (List<UIVertex> vList)
-#else
-        public override void ModifyMesh (VertexHelper vh)
+        public BlendMode blendMode { get { return m_blendMode; } set { if (m_blendMode != value) { m_blendMode = value; Refresh(); } } }
+        public Color color { get { return m_color; } set { if (m_color != value) { m_color = value; Refresh(); } } }
+
+        public override void ModifyMesh(VertexHelper vh)
         {
-            if (IsActive() == false) {
+            if (IsActive() == false)
+            {
                 return;
             }
 
-            var vList = new List<UIVertex>();
+            List<UIVertex> vList = UiEffectListPool<UIVertex>.Get();
+
             vh.GetUIVertexStream(vList);
 
             ModifyVertices(vList);
 
             vh.Clear();
             vh.AddUIVertexTriangleStream(vList);
+
+            UiEffectListPool<UIVertex>.Release(vList);
         }
 
-        public void ModifyVertices (List<UIVertex> vList)
-#endif
+        private void ModifyVertices(List<UIVertex> vList)
         {
-            if (IsActive() == false || vList == null || vList.Count == 0) {
+            if (IsActive() == false || vList == null || vList.Count == 0)
+            {
                 return;
             }
 
-            UIVertex tempVertex = vList[0];
-            for (int i = 0; i < vList.Count; i++) {
-                tempVertex = vList[i];
-                byte orgAlpha = tempVertex.color.a;
-                switch (blendMode) {
-                    case BLEND_MODE.Multiply:
-                        tempVertex.color *= color;
+            UIVertex newVertex;
+            for (int i = 0; i < vList.Count; i++)
+            {
+                newVertex = vList[i];
+                byte orgAlpha = newVertex.color.a;
+                switch (m_blendMode)
+                {
+                    case BlendMode.Multiply:
+                        newVertex.color *= m_color;
                         break;
-                    case BLEND_MODE.Additive:
-                        tempVertex.color += color;
+                    case BlendMode.Additive:
+                        newVertex.color += m_color;
                         break;
-                    case BLEND_MODE.Subtractive:
-                        tempVertex.color -= color;
+                    case BlendMode.Subtractive:
+                        newVertex.color -= m_color;
                         break;
-                    case BLEND_MODE.Override:
-                        tempVertex.color = color;
+                    case BlendMode.Override:
+                        newVertex.color = m_color;
+                        break;
+                    default:
                         break;
                 }
-                tempVertex.color.a = orgAlpha;
-                vList[i] = tempVertex;
+                newVertex.color.a = orgAlpha;
+                vList[i] = newVertex;
             }
         }
 
-        /// <summary>
-        /// Refresh Blend Color on playing.
-        /// </summary>
-        public void Refresh ()
+        private void Refresh()
         {
-            if (graphic != null) {
+            if (graphic != null)
+            {
                 graphic.SetVerticesDirty();
             }
         }

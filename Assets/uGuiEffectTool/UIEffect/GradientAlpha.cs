@@ -10,19 +10,19 @@ using UnityEngine.UI;
 
 namespace UiEffect
 {
-    [AddComponentMenu("UI/Effects/Gradient Color"), RequireComponent(typeof(Graphic))]
-    public class GradientColor : BaseMeshEffect
+    [AddComponentMenu("UI/Effects/Gradient Alpha"), RequireComponent(typeof(Graphic))]
+    public class GradientAlpha : BaseMeshEffect
     {
         private const int ONE_TEXT_VERTEX = 6;
 
-        [SerializeField]
-        private Color m_colorTop = Color.white;
-        [SerializeField]
-        private Color m_colorBottom = Color.white;
-        [SerializeField]
-        private Color m_colorLeft = Color.white;
-        [SerializeField]
-        private Color m_colorRight = Color.white;
+        [SerializeField, Range(0f, 1f)]
+        private float m_alphaTop = 1f;
+        [SerializeField, Range(0f, 1f)]
+        private float m_alphaBottom = 1f;
+        [SerializeField, Range(0f, 1f)]
+        private float m_alphaLeft = 1f;
+        [SerializeField, Range(0f, 1f)]
+        private float m_alphaRight = 1f;
         [SerializeField, Range(-1f, 1f)]
         private float m_gradientOffsetVertical = 0f;
         [SerializeField, Range(-1f, 1f)]
@@ -30,10 +30,10 @@ namespace UiEffect
         [SerializeField]
         private bool m_splitTextGradient = false;
 
-        public Color colorTop { get { return m_colorTop; } set { if (m_colorTop != value) { m_colorTop = value; Refresh(); } } }
-        public Color colorBottom { get { return m_colorBottom; } set { if (m_colorBottom != value) { m_colorBottom = value; Refresh(); } } }
-        public Color colorLeft { get { return m_colorLeft; } set { if (m_colorLeft != value) { m_colorLeft = value; Refresh(); } } }
-        public Color colorRight { get { return m_colorRight; } set { if (m_colorRight != value) { m_colorRight = value; Refresh(); } } }
+        public float alphaTop { get { return m_alphaTop; } set { if (m_alphaTop != value) { m_alphaTop = Mathf.Clamp01(value); Refresh(); } } }
+        public float alphaBottom { get { return m_alphaBottom; } set { if (m_alphaBottom != value) { m_alphaBottom = Mathf.Clamp01(value); Refresh(); } } }
+        public float alphaLeft { get { return m_alphaLeft; } set { if (m_alphaLeft != value) { m_alphaLeft = Mathf.Clamp01(value); Refresh(); } } }
+        public float alphaRight { get { return m_alphaRight; } set { if (m_alphaRight != value) { m_alphaRight = Mathf.Clamp01(value); Refresh(); } } }
         public float gradientOffsetVertical { get { return m_gradientOffsetVertical; } set { if (m_gradientOffsetVertical != value) { m_gradientOffsetVertical = Mathf.Clamp(value, -1f, 1f); Refresh(); } } }
         public float gradientOffsetHorizontal { get { return m_gradientOffsetHorizontal; } set { if (m_gradientOffsetHorizontal != value) { m_gradientOffsetHorizontal = Mathf.Clamp(value, -1f, 1f); Refresh(); } } }
         public bool splitTextGradient { get { return m_splitTextGradient; } set { if (m_splitTextGradient != value) { m_splitTextGradient = value; Refresh(); } } }
@@ -97,11 +97,11 @@ namespace UiEffect
 
                 newVertex = vList[i];
 
-                Color colorOriginal = newVertex.color;
-                Color colorVertical = Color.Lerp(m_colorBottom, m_colorTop, (height > 0 ? (newVertex.position.y - minY) / height : 0) + m_gradientOffsetVertical);
-                Color colorHorizontal = Color.Lerp(m_colorLeft, m_colorRight, (width > 0 ? (newVertex.position.x - minX) / width : 0) + m_gradientOffsetHorizontal);
+                float alphaOriginal = newVertex.color.a / 255f;
+                float alphaVertical = Mathf.Lerp(m_alphaBottom, m_alphaTop, (height > 0 ? (newVertex.position.y - minY) / height : 0) + m_gradientOffsetVertical);
+                float alphaHorizontal = Mathf.Lerp(m_alphaLeft, m_alphaRight, (width > 0 ? (newVertex.position.x - minX) / width : 0) + m_gradientOffsetHorizontal);
 
-                newVertex.color = colorOriginal * colorVertical * colorHorizontal;
+                newVertex.color.a = (byte)(Mathf.Clamp01(alphaOriginal * alphaVertical * alphaHorizontal) * 255);
 
                 vList[i] = newVertex;
             }

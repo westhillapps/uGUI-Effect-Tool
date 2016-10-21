@@ -3,9 +3,12 @@ uGUI-Effect-Tool
 
 [![License](https://img.shields.io/badge/license-MIT-blue.svg?style=flat)](http://opensource.org/licenses/mit-license.php)
 
-Vertex color UI Effect for Unity4.6 new UI (uGUI).  
+Vertex color UI Effect for Unity UI (uGUI).  
+made with Unity5.4.0f1
 
-![Gradient01](https://raw.githubusercontent.com/WestHillApps/westhillapps.github.io/master/res/ugui-effect-tool_gradient01.png)
+![GradientColor01](https://raw.githubusercontent.com/WestHillApps/westhillapps.github.io/master/res/ugui-effect-tool_gradient_color01.png)
+
+![GradientAlpha01](https://raw.githubusercontent.com/WestHillApps/westhillapps.github.io/master/res/ugui-effect-tool_gradient_alpha01.png)
 
 ![Blend01](https://raw.githubusercontent.com/WestHillApps/westhillapps.github.io/master/res/ugui-effect-tool_blend01.png)
 
@@ -14,16 +17,18 @@ How To Use
 Add the component to UI GameObject.
 
 * Gradient Color - (Add Component >> UI/Effects/Gradient Color)  
-![Gradient02](https://raw.githubusercontent.com/WestHillApps/westhillapps.github.io/master/res/ugui-effect-tool_gradient02.png)
+![GradientColor02](https://raw.githubusercontent.com/WestHillApps/westhillapps.github.io/master/res/ugui-effect-tool_gradient_color02.png)
+
+* Gradient Alpha - (Add Component >> UI/Effects/Gradient Alpha)  
+![GradientColor02](https://raw.githubusercontent.com/WestHillApps/westhillapps.github.io/master/res/ugui-effect-tool_gradient_alpha02.png)
 
 * Blend Color - (Add Component >> UI/Effects/Blend Color)    
 ![Blend02](https://raw.githubusercontent.com/WestHillApps/westhillapps.github.io/master/res/ugui-effect-tool_blend02.png)
-
-*If you have made a change of color during play, please call the "Refresh()" method.  
+  
 
 Developed By
 -------
-WestHillApps (Hironari Nishioka) - <xnininix@gmail.com>
+WestHillApps (Hironari Nishioka) - <nishioka-h@westhillapps.com>
 
 <a href="https://twitter.com/westhillapps">
 <img alt="Follow me on Twitter"
