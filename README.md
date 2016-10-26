@@ -6,11 +6,14 @@ uGUI-Effect-Tool
 Vertex color UI Effect for Unity UI (uGUI).  
 made with Unity5.4.0f3
 
-![GradientColor01](https://raw.githubusercontent.com/WestHillApps/westhillapps.github.io/master/res/ugui-effect-tool_gradient_color01.png)
+* Gradient Color  
+![GradientColor01](https://raw.githubusercontent.com/WestHillApps/westhillapps.github.io/master/res/ugui-effect-tool_gradient_color01.gif)
 
-![GradientAlpha01](https://raw.githubusercontent.com/WestHillApps/westhillapps.github.io/master/res/ugui-effect-tool_gradient_alpha01.png)
+* Gradient Alpha  
+![GradientAlpha01](https://raw.githubusercontent.com/WestHillApps/westhillapps.github.io/master/res/ugui-effect-tool_gradient_alpha01.gif)
 
-![Blend01](https://raw.githubusercontent.com/WestHillApps/westhillapps.github.io/master/res/ugui-effect-tool_blend01.png)
+* Blend Color  
+![Blend01](https://raw.githubusercontent.com/WestHillApps/westhillapps.github.io/master/res/ugui-effect-tool_blend01.gif)
 
 How To Use
 -------

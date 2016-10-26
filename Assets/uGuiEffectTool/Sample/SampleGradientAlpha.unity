@@ -267,7 +267,7 @@ MonoBehaviour:
 
     ALPHA
 
-    SPLIT'
+    SPLIT TEXT'
 --- !u!222 &39551185
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -364,7 +364,7 @@ MonoBehaviour:
 
     ALPHA
 
-    SPLIT'
+    SPLIT TEXT'
 --- !u!222 &51627392
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -872,7 +872,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 0.5019608, g: 0, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -1078,7 +1078,7 @@ MonoBehaviour:
 
     ALPHA
 
-    SPLIT'
+    SPLIT TEXT'
 --- !u!222 &1804778274
 CanvasRenderer:
   m_ObjectHideFlags: 0
