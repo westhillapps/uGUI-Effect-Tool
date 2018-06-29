@@ -1,7 +1,11 @@
+
 uGUI-Effect-Tool
 ======
 
-[![License](https://img.shields.io/badge/license-MIT-blue.svg?style=flat)](http://opensource.org/licenses/mit-license.php)
+[![GitHub License](https://img.shields.io/badge/license-MIT-blue.svg)](http://opensource.org/licenses/mit-license.php)
+[![GitHub Stars](https://img.shields.io/github/stars/WestHillApps/uGUI-Effect-Tool.svg)](https://github.com/WestHillApps/uGUI-Effect-Tool/stargazers)
+[![GitHub Forks](https://img.shields.io/github/forks/WestHillApps/uGUI-Effect-Tool.svg)](https://github.com/WestHillApps/uGUI-Effect-Tool/network)
+
 
 Vertex color UI Effect for Unity UI (uGUI).  
 made with Unity5.4.0f3
@@ -40,7 +44,7 @@ src="https://raw.githubusercontent.com/WestHillApps/westhillapps.github.io/maste
 
 License
 -------
-The MIT License (MIT)
+MIT License
 
 Copyright (c) 2016 WestHillApps (Hironari Nishioka)
 
